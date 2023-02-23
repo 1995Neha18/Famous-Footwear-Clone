@@ -20,7 +20,7 @@ export default function Slider() {
         slidesPerView={4}
         cssMode={true}
         navigation={true}
-        pagination={true}
+        pagination={false}
         mousewheel={true}
         keyboard={true}
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}

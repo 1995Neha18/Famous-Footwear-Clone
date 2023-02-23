@@ -27,7 +27,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { FaRegUserCircle, FaRegHeart } from "react-icons/fa";
-import { BsHandbag } from "react-icons/bs";
+import { BsHandbag, BsSearch } from "react-icons/bs";
 import { GrLocation } from "react-icons/gr";
 
 export default function Navbar() {
@@ -45,6 +45,10 @@ export default function Navbar() {
               w="18rem"
               color="black"
             />
+            <BsSearch
+            style={{marginLeft:"-1.5rem"}}
+            />
+           
             <HStack spacing="6">
               <FaRegUserCircle size="30px" color="gray" />
               <FaRegHeart size="30px" color="gray" />
@@ -141,7 +145,7 @@ export default function Navbar() {
           <Text>Free Shipping for Rewards or Orders $75+</Text>
         </Box>
       </HStack> */}
-      <Flex justifyContent={"space-between"} w="100%" marginTop={5} >
+      <Flex justifyContent={"space-between"} w="100%" marginTop={5}>
         <Flex justifyContent={"space-between"} gap={2}>
           <GrLocation size="20px" />
           <Text>Find a store</Text>
@@ -161,44 +165,85 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
-            </PopoverTrigger>
+    <Stack direction={"row"} spacing={4} align="center">
+      {NAV_ITEMS.map((navItem, id) => (
+        <>
+          {id !== NAV_ITEMS.length - 1 ? (
+            <Box key={id}>
+              <Popover trigger={"hover"} placement={"bottom-start"}>
+                <PopoverTrigger>
+                  <Link
+                    p={2}
+                    href={navItem.href ?? "#"}
+                    fontSize={"sm"}
+                    fontWeight={500}
+                    color={linkColor}
+                    _hover={{
+                      textDecoration: "none",
+                      color: linkHoverColor,
+                    }}
+                  >
+                    {navItem.label}
+                  </Link>
+                </PopoverTrigger>
 
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
-        </Box>
+                {navItem.children && (
+                  <PopoverContent
+                    border={0}
+                    boxShadow={"xl"}
+                    bg={popoverContentBgColor}
+                    p={4}
+                    rounded={"xl"}
+                    minW={"sm"}
+                  >
+                    <Stack>
+                      {navItem.children.map((child) => (
+                        <DesktopSubNav key={child.label} {...child} />
+                      ))}
+                    </Stack>
+                  </PopoverContent>
+                )}
+              </Popover>
+            </Box>
+          ) : (
+            <Box key={navItem.label}>
+              <Popover trigger={"hover"} placement={"bottom-start"}>
+                <PopoverTrigger>
+                  <Link
+                    p={2}
+                    href={navItem.href ?? "#"}
+                    fontSize={"sm"}
+                    fontWeight={500}
+                    color={"red"}
+                    _hover={{
+                      textDecoration: "none",
+                      color: linkHoverColor,
+                    }}
+                  >
+                    {navItem.label}
+                  </Link>
+                </PopoverTrigger>
+
+                {navItem.children && (
+                  <PopoverContent
+                    border={0}
+                    boxShadow={"xl"}
+                    bg={popoverContentBgColor}
+                    p={4}
+                    rounded={"xl"}
+                    minW={"sm"}
+                  >
+                    <Stack>
+                      {navItem.children.map((child) => (
+                        <DesktopSubNav key={child.label} {...child} />
+                      ))}
+                    </Stack>
+                  </PopoverContent>
+                )}
+              </Popover>
+            </Box>
+          )}
+        </>
       ))}
     </Stack>
   );
