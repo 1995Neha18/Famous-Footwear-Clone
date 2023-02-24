@@ -29,10 +29,12 @@ import {
 import { FaRegUserCircle, FaRegHeart } from "react-icons/fa";
 import { BsHandbag, BsSearch } from "react-icons/bs";
 import { GrLocation } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
+import Login from "./Login";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-
+  const navigate = useNavigate();
   return (
     <>
       <HStack h="100px" w="100%" justifyContent="flex-end">
@@ -117,13 +119,12 @@ export default function Navbar() {
               Sign In
             </Button> */}
             <Button
-              as={"a"}
+              onClick={() =>navigate("/login")}
               display={{ base: "none", md: "inline-flex" }}
               fontSize={"sm"}
               fontWeight={600}
               color={"white"}
               bg={"purple.500"}
-              href={"#"}
               _hover={{
                 bg: "blue.200",
               }}
@@ -146,8 +147,8 @@ export default function Navbar() {
         </Box>
       </HStack> */}
       <Flex justifyContent={"space-between"} w="100%" marginTop={5}>
-        <Flex justifyContent={"space-between"} gap={2}>
-          <GrLocation size="20px" />
+        <Flex justifyContent={"space-between"} gap={2} cursor="pointer">
+          <GrLocation size="20px"/>
           <Text>Find a store</Text>
         </Flex>
         <VStack justifyContent={"end"} marginEnd="20px">
@@ -388,27 +389,92 @@ const NAV_ITEMS = [
   },
   {
     label: "Men",
-    href: "#",
+    children: [
+      {
+        label: "Job Board",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Freelance Projects",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+    ],
   },
   {
     label: "Kids",
-    href: "#",
+    children: [
+      {
+        label: "Job Board",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Freelance Projects",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+    ],
   },
   {
     label: "Brand",
-    href: "#",
+    children: [
+      {
+        label: "Job Board",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Freelance Projects",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+    ],
   },
   {
     label: "Accessories",
-    href: "#",
+    children: [
+      {
+        label: "Job Board",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Freelance Projects",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+    ],
   },
   {
     label: "Sale",
-    href: "#",
+    children: [
+      {
+        label: "Job Board",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Freelance Projects",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+    ],
   },
   {
     label: "Your Offers",
-    href: "#",
-    color: "red",
+    children: [
+      {
+        label: "Job Board",
+        subLabel: "Find your dream design job",
+        href: "#",
+      },
+      {
+        label: "Freelance Projects",
+        subLabel: "An exclusive list for contract work",
+        href: "#",
+      },
+    ],
   },
 ];
