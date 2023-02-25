@@ -1,19 +1,14 @@
-import React from 'react';
-import Midpage from './Midpage';
-
-import Slider from './Swiper';
-
+import React from "react";
+import Midpage from "./Midpage";
+import Slider from "./Swiper";
 
 const Homepage = () => {
   return (
     <div>
-          
-          <Slider/>
-          <Midpage/>
-          
-          
+      <Slider />
+      <Midpage />
     </div>
-  )
-}
+  );
+};
 
 export default Homepage;

@@ -32,6 +32,9 @@ import { GrLocation } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 
+
+
+
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
@@ -95,7 +98,7 @@ export default function Navbar() {
               fontFamily={"heading"}
               color={useColorModeValue("gray.800", "white")}
             >
-              <Image src="logo1.png" alt="logo" width="24" />
+              <Image src="logo1.png" alt="logo" width="24" onClick={() =>navigate("/Homepage")}/>
             </Text>
 
             <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -374,6 +377,7 @@ const NAV_ITEMS = [
   },
   {
     label: "Women",
+    href: "/product",
     children: [
       {
         label: "Job Board",

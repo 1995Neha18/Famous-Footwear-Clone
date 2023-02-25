@@ -297,7 +297,7 @@ const Midpage = () => {
       </Stack>
 
       <Flex
-        justifyContent="space-between"
+        justifyContent="space-between" 
         w={{ base: "100%", md: "80%" }}
         h="150px"
       >

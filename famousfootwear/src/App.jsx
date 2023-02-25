@@ -8,9 +8,9 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <Box w="80%" mx="auto">
-      <Navbar/>
+      <Navbar />
       <AllRoutes />
-      <Footer/>
+      <Footer />
     </Box>
   );
 }
