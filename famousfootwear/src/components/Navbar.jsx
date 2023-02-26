@@ -30,13 +30,11 @@ import { FaRegUserCircle, FaRegHeart } from "react-icons/fa";
 import { BsHandbag, BsSearch } from "react-icons/bs";
 import { GrLocation } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
-import Login from "./Login";
-
-
-
+import { AuthContext } from "../AuthContextProvider";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+  const { auth,logout } = React.useContext(AuthContext);
   const navigate = useNavigate();
   return (
     <>
@@ -50,10 +48,8 @@ export default function Navbar() {
               w="18rem"
               color="black"
             />
-            <BsSearch
-            style={{marginLeft:"-1.5rem"}}
-            />
-           
+            <BsSearch style={{ marginLeft: "-1.5rem" }} />
+
             <HStack spacing="6">
               <FaRegUserCircle size="30px" color="gray" />
               <FaRegHeart size="30px" color="gray" />
@@ -98,7 +94,12 @@ export default function Navbar() {
               fontFamily={"heading"}
               color={useColorModeValue("gray.800", "white")}
             >
-              <Image src="logo1.png" alt="logo" width="24" onClick={() =>navigate("/Homepage")}/>
+              <Image
+                src="logo1.png"
+                alt="logo"
+                width="24"
+                onClick={() => navigate("/")}
+              />
             </Text>
 
             <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -121,19 +122,45 @@ export default function Navbar() {
             >
               Sign In
             </Button> */}
-            <Button
-              onClick={() =>navigate("/login")}
-              display={{ base: "none", md: "inline-flex" }}
-              fontSize={"sm"}
-              fontWeight={600}
-              color={"white"}
-              bg={"purple.500"}
-              _hover={{
-                bg: "blue.200",
-              }}
-            >
-              Sign Up
-            </Button>
+            {!auth ? (
+              <Button
+                onClick={() => navigate("/login")}
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"sm"}
+                fontWeight={600}
+                color={"white"}
+                bg={"purple.500"}
+                _hover={{
+                  bg: "blue.200",
+                }}
+              >
+                Login
+              </Button>
+            ) : (
+              <Flex
+                width='165px'
+                justifyContent={"space-between"}
+              >
+                <Button
+                _hover={
+                  {cursor:'default'}
+                }
+                >{'Neha'}</Button>
+                <Button
+                onClick={() =>logout()}
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"sm"}
+                fontWeight={600}
+                color={"white"}
+                bg={"red.500"}
+                _hover={{
+                  bg: "blue.200",
+                }}
+              >
+                Logout
+              </Button>
+              </Flex>
+            )}
           </Stack>
         </Flex>
         <Collapse in={isOpen} animateOpacity>
@@ -151,7 +178,7 @@ export default function Navbar() {
       </HStack> */}
       <Flex justifyContent={"space-between"} w="100%" marginTop={5}>
         <Flex justifyContent={"space-between"} gap={2} cursor="pointer">
-          <GrLocation size="20px"/>
+          <GrLocation size="20px" />
           <Text>Find a store</Text>
         </Flex>
         <VStack justifyContent={"end"} marginEnd="20px">
@@ -363,13 +390,13 @@ const NAV_ITEMS = [
     label: "New & Now",
     children: [
       {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
+        label: "Spotlight On",
+        subLabel: "New Arrivals",
         href: "#",
       },
       {
         label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
+        subLabel: "Eco-Conscious Styles",
         fontSize: "md",
         href: "#",
       },
@@ -380,13 +407,13 @@ const NAV_ITEMS = [
     href: "/product",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
+        label: "Sneakers & Athletics",
+        subLabel: "Work & Safety",
         href: "#",
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
+        label: "Spotlight On",
+        subLabel: "Active & Outdoor Shop",
         href: "#",
       },
     ],
@@ -395,13 +422,13 @@ const NAV_ITEMS = [
     label: "Men",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
+        label: "Sneakers & Athletics",
+        subLabel: "Work & Safety",
         href: "#",
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
+        label: "Spotlight On",
+        subLabel: "Active & Outdoor Shop",
         href: "#",
       },
     ],
@@ -410,28 +437,23 @@ const NAV_ITEMS = [
     label: "Kids",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
+        label: "Sneakers & Athletics",
+        subLabel: "Work & Safety",
         href: "#",
       },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
-      },
+      { label: "Spotlight On", subLabel: "Active & Outdoor Shop", href: "#" },
     ],
   },
   {
     label: "Brand",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
+        label: "Sneakers & Athletics",
+        subLabel: "Work & Safety",
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
+        label: "Spotlight On",
+        subLabel: "Active & Outdoor Shop",
         href: "#",
       },
     ],
@@ -440,13 +462,13 @@ const NAV_ITEMS = [
     label: "Accessories",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
+        label: "Sneakers & Athletics",
+        subLabel: "Work & Safety",
         href: "#",
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
+        label: "Spotlight On",
+        subLabel: "Active & Outdoor Shop",
         href: "#",
       },
     ],
@@ -455,13 +477,13 @@ const NAV_ITEMS = [
     label: "Sale",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
+        label: "Sneakers & Athletics",
+        subLabel: "Work & Safety",
         href: "#",
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
+        label: "Spotlight On",
+        subLabel: "Active & Outdoor Shop",
         href: "#",
       },
     ],
@@ -470,15 +492,11 @@ const NAV_ITEMS = [
     label: "Your Offers",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
+        label: "Sneakers & Athletics",
+        subLabel: "Work & Safety",
         href: "#",
       },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
-      },
+      { label: "Spotlight On", subLabel: "Active & Outdoor Shop", href: "#" },
     ],
   },
 ];
