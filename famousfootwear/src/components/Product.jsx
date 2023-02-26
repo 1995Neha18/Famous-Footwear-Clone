@@ -24,25 +24,39 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import Sandles from "./Sandles";
+import Pagination from "./Pagination";
 
 const Product = () => {
-  let [products, setProducts] = React.useState([]);
+  const [products, setProducts] = React.useState([]);
+  const [page, setPage] = React.useState(1);
+  const [totalpages, setTotalpages] = React.useState(1);
 
-  function fetchProducts() {
-    fetch("http://localhost:3001/productItems")
+  const onchange = (value) => {
+    const changeBy = value + page;
+    setPage(changeBy);
+  };
+
+  function fetchProducts(page) {
+    fetch(
+      `https://festive-candle-fontina.glitch.me/womenshoes?_page=${page}&_limit=10`
+    )
       .then((response) => response.json())
       .then((json) => setProducts(json));
   }
 
   React.useEffect(() => {
-    fetchProducts();
-  }, []);
-  console.log(products);
+    fetchProducts(page);
+  }, [page]);
 
   return (
     <div>
-      <HStack w="100%" border="1px solid black">
-        <VStack w="20%" border="1px solid black">
+      <HStack w="100%"
+      //  border="1px solid red"
+         align={"flex-start"}
+      >
+        <VStack w="20%"
+        //  border="1px solid black"
+         >
           <Box>
             <Text fontSize="24px" fontWeight="bold" color="gray.700">
               Women's Shoes
@@ -121,21 +135,26 @@ const Product = () => {
         <div>
           <Grid templateColumns="repeat(4, 1fr)" gap={2}>
             {products?.length > 0 &&
-              products.map((e) => {
+              products.map((e,idx,arr) => {
                 return (
                   <GridItem key={e.id} w="100%">
                     <Sandles
                       id={e.id}
                       Price={e.price}
-                      image={e.image}
+                      image={e.image[0].src}
                       title={e.title}
-                      title1={e.title1}
-                      title3={e.title3}
+                      category={e.category}
+                      product={arr[idx]}
                     />
                   </GridItem>
                 );
               })}
           </Grid>
+          <Pagination
+            page={page}
+            totalpages={totalpages}
+            onchange={(value) => onchange(value)}
+          />
         </div>
       </HStack>
     </div>
@@ -143,10 +162,3 @@ const Product = () => {
 };
 
 export default Product;
-{
-  /* <HStack spacing='5'  w="100%" mx='auto' >
-        {shoes.map((shoe, idx) => (
-          <Card {...shoe} key={idx} />
-        ))}
-      </HStack> */
-}

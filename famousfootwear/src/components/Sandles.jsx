@@ -8,11 +8,17 @@ import {
   Image,
   Grid,
   GridItem,
+  Button,
 } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link, Link as RouterLink } from "react-router-dom";
+import { AuthContext } from "../AuthContextProvider";
+import React from "react";
 
-export default function Sandles(props) {
-  const { id, image, Price, title, title1, title3 } = props;
+export default function Sandles( {id,  image, Price, title, category,product} ) {
+  const {data,setData} = React.useContext(AuthContext)
+  const handleClick = () => {
+        setData([product,...data])
+  }
 
   return (
     <Center py={12}>
@@ -32,7 +38,7 @@ export default function Sandles(props) {
             rounded={"lg"}
             mt={-12}
             pos={"relative"}
-            height={"160px"}
+            height={"240px"}
             _after={{
               transition: "all .3s ease",
               content: '""',
@@ -53,7 +59,7 @@ export default function Sandles(props) {
           >
             <Image
               rounded={"lg"}
-              height={200}
+              height={270}
               width={210}
               objectFit={"cover"}
               src={image}
@@ -69,15 +75,20 @@ export default function Sandles(props) {
               {Price}
             </Text>
             <Heading fontSize={"2sm"} fontFamily={"body"} fontWeight={500}>
-              {title}
+            {title }
             </Heading>
 
             <Heading fontSize={"sm"} fontFamily={"body"} fontWeight={500}>
-              {title1}
+              {category}
             </Heading>
-            <Heading fontSize={"sm"} fontFamily={"body"} fontWeight={500}>
+           <Link
+             to="/ProductDetails"
+           >
+           <Button bg="black" color="white" onClick={handleClick}>Add to Cart</Button>
+           </Link>
+            {/* <Heading fontSize={"sm"} fontFamily={"body"} fontWeight={500}>
               {title3}
-            </Heading>
+            </Heading> */}
           </Stack>
         </Box>
       </RouterLink>

@@ -62,7 +62,7 @@ function Card({ title, price, isNew, imageURL, rating, numReviews }) {
       >
         {isNew && (
           <Box size="14px" position="absolute" top={2} right={2}>
-            <BsHeart fontSize="22px" />
+            {/* <BsHeart fontSize="22px" /> */}
           </Box>
         )}
         <Center h="250px" padding="1rem">
