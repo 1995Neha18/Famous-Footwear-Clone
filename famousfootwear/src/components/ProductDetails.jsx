@@ -186,7 +186,7 @@ export default function ProductDetails() {
             }}
             onClick={() => alert("Added to cart")}
           >
-            Buy Now
+            Add to Cart
           </Button>
           </RouterLink>
 

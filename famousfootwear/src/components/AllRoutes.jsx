@@ -6,6 +6,8 @@ import Product from "./Product";
 import Sandles from "./Sandles";
 import Cart from "./ProductDetails";
 import ProductDetails from "./ProductDetails";
+import Addtocart from "./Addtocart";
+import Payment from "./Payment";
 
 const AllRoutes = () => {
   return (
@@ -16,6 +18,8 @@ const AllRoutes = () => {
         <Route path="/product" element={<Product />} />
         <Route path="/women/:id" element={<Sandles />} />
         <Route path="/productDetails" element={<ProductDetails />} />
+        <Route path="/addtocart" element={<Addtocart />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </div>
   );

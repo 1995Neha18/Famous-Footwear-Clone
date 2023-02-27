@@ -30,6 +30,24 @@ const Product = () => {
   const [products, setProducts] = React.useState([]);
   const [page, setPage] = React.useState(1);
   const [totalpages, setTotalpages] = React.useState(1);
+  const [sortBy, setSortBy] = React.useState("asc");
+
+  // React.useEffect(()=>{
+  //   if(sortBy==="asc"){
+  //     const Arr = [...products].sort((a,b)=> Number(a.price) - Number(b.price) )
+  //     setSortBy(Arr)
+  //   }
+  //   else if(sortBy==="desc"){
+  //     const Arr = [...products].sort((a,b)=> Number(b.price) - Number(a.price) )
+  //     setSortBy(Arr)
+  //   }
+  //   fetchProducts( );
+  // },[ sortBy])
+
+  const handleSortChange = (e) => {
+    let sortType = e.target.value;
+    getData(`http://localhost:8080/products?_sort=price&_order=${sortType}`);
+  };
 
   const onchange = (value) => {
     const changeBy = value + page;
@@ -48,15 +66,30 @@ const Product = () => {
     fetchProducts(page);
   }, [page]);
 
+  //  useEffect(() => {
+  //       getProducts(searchQuery)
+  //  }, [searchQuery])
+
+  //  useEffect(() => {
+  //       if(Price){
+  //           if(Price==="Low"){
+  //              const arr = products.sort((a,b)=>a.Price-b.Price)
+  //              console.log(arr)
+  //               setProducts(arr)
+  //       }
+  //  }, [input])
+
   return (
     <div>
-      <HStack w="100%"
-      //  border="1px solid red"
-         align={"flex-start"}
+      <HStack
+        w="100%"
+        //  border="1px solid red"
+        align={"flex-start"}
       >
-        <VStack w="20%"
-        //  border="1px solid black"
-         >
+        <VStack
+          w="20%"
+          //  border="1px solid black"
+        >
           <Box>
             <Text fontSize="24px" fontWeight="bold" color="gray.700">
               Women's Shoes
@@ -70,10 +103,9 @@ const Product = () => {
             <Text fontSize="18px">Sort by</Text>
           </Box>
 
-          <Select placeholder="Featured" w="80%">
-            <option value="option1">Newer</option>
-            <option value="option2">Price: High to Low</option>
-            <option value="option3">Price: Low to High</option>
+          <Select placeholder="Sort" size={"sm"} w="190px" onChange={handleSortChange}>
+            <option value="asc">Price: low to high</option>
+            <option value="desc">Price: high to low</option>
           </Select>
 
           <Box width={"75%"} textAlign={"start"}>
@@ -135,7 +167,7 @@ const Product = () => {
         <div>
           <Grid templateColumns="repeat(4, 1fr)" gap={2}>
             {products?.length > 0 &&
-              products.map((e,idx,arr) => {
+              products.map((e, idx, arr) => {
                 return (
                   <GridItem key={e.id} w="100%">
                     <Sandles
