@@ -1,1 +1,7 @@
 # glorious-calendar-2511
+Footwear is an E-commerce website for shoes and I have given this website a different name and logo i..e,, Flippers for the whole family from hundreds of name brands. You'll find styles for women, men and kids from brands like Nike, Converse, Vans, adidas, Naturalizer, shoes, Madden Girl, Skechers and more! With stores in the U.S. and Canada and even more selection online at Famous.com and FamousFootwear.ca, Famous Footwear is a leading family footwear destination for the famous brands you know and love. Famous Footwear is part of Caleres Inc., a diverse portfolio of global footwear brands. Combined, these brands help make Caleres a company with both a legacy and a mission. Caleres' legacy includes more than 130-years of craftsmanship, a passion for fit with a mission to continue to inspire people to feel good…feet first. We understand the joy new shoes can bring and can’t wait to share that feeling with each and every customer.
+![one](https://user-images.githubusercontent.com/113035635/221483849-6e8e2263-60bd-4f90-b293-042202bbb0c3.PNG)
+![two](https://user-images.githubusercontent.com/113035635/221484190-0cb37c3e-2446-4795-9ab8-6b5995a33366.PNG)
+
+![Productpage](https://user-images.githubusercontent.com/113035635/221483889-3636bae3-045d-4eda-bf74-168104309cda.PNG)
+![login](https://user-images.githubusercontent.com/113035635/221483907-6906ebec-fe17-49c4-84f8-f04d4049670d.PNG)
